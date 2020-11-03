@@ -6,7 +6,6 @@ const EditTodo = ({todo}) => {
     const updateDescription = async (e) => {
         e.preventDefault()
         try {
-            window.location = "/"
             const body = { description };
             
             const response = await fetch(`http://localhost:5000/todos/${todo.todo_id}`,{
@@ -14,11 +13,12 @@ const EditTodo = ({todo}) => {
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body),
             });
-
+            window.location = "/"
         } catch (err) { 
             console.error(err.message)
         }
-    } 
+    }
+    console.log(description); 
     return(
         <Fragment>
             <button type="button" class="btn btn-warning" data-toggle="modal" data-target={`#id${todo.todo_id}`}>
